@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="odg-i5-Nbn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="odg-i5-Nbn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -107,7 +107,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="O8E-4Y-ezz">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="O8E-4Y-ezz" userLabel="Place Image">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 </imageView>
                                             </subviews>
@@ -236,13 +236,21 @@
                     <navigationItem key="navigationItem" title="New Place" id="e8Z-en-K5I">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="jpY-nm-ceI">
                             <connections>
-                                <segue destination="z6W-Rh-LsU" kind="unwind" unwindAction="cancelAction:" id="Jrh-m2-k53"/>
+                                <action selector="cancelAction:" destination="dpu-XH-41f" id="BSQ-e6-aTc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kOh-ck-i4K"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kOh-ck-i4K">
+                            <connections>
+                                <segue destination="z6W-Rh-LsU" kind="unwind" unwindAction="unwindSegue:" id="Bdc-ap-E0v"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageOfPLace" destination="O8E-4Y-ezz" id="vdy-lK-zk7"/>
+                        <outlet property="placeImage" destination="O8E-4Y-ezz" id="vdy-lK-zk7"/>
+                        <outlet property="placeLocation" destination="taQ-bO-3Sd" id="8pO-Af-wl6"/>
+                        <outlet property="placeName" destination="QjO-Uz-p9a" id="0wL-Hh-leT"/>
+                        <outlet property="placeType" destination="6GO-fJ-WDp" id="eRl-y7-BIl"/>
+                        <outlet property="saveButton" destination="kOh-ck-i4K" id="5Hn-KU-2w9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="679-55-6l4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

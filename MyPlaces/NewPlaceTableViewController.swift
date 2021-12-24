@@ -8,13 +8,25 @@
 import UIKit
 
 class NewPlaceTableViewController: UITableViewController {
+    
+    var newPLace: Place?
+    var imageIsChanged = false
 
-    @IBOutlet var imageOfPLace: UIImageView!
+    @IBOutlet var saveButton: UIBarButtonItem!
+    
+    @IBOutlet var placeImage: UIImageView!
+    @IBOutlet var placeName: UITextField!
+    @IBOutlet var placeLocation: UITextField!
+    @IBOutlet var placeType: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView() // строка ничего не меняет
+        
+        saveButton.isEnabled = false
+        
+        placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
     //MARK: Table view delegate
@@ -50,6 +62,17 @@ class NewPlaceTableViewController: UITableViewController {
             view.endEditing(true)
         }
     }
+    
+    func saveNewPlace() {
+        
+        let image = imageIsChanged ? placeImage.image : UIImage(named: "imagePlaceholder")
+        
+        newPLace = Place(name: placeName.text!, location: placeLocation.text, type: placeType.text, image: image, restaurantImage: nil)
+    }
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        dismiss(animated: true)
+    }
 }
 
 // MARK: Text field delegate
@@ -61,6 +84,15 @@ extension NewPlaceTableViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @objc private func textFieldChanged() {
+        
+        if placeName.text?.isEmpty == false {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
 }
 
@@ -81,9 +113,12 @@ extension NewPlaceTableViewController: UIImagePickerControllerDelegate, UINaviga
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        imageOfPLace.image = info[.editedImage] as? UIImage
-        imageOfPLace.contentMode = .scaleAspectFill
-        imageOfPLace.clipsToBounds = true
+        placeImage.image = info[.editedImage] as? UIImage
+        placeImage.contentMode = .scaleAspectFill
+        placeImage.clipsToBounds = true
+        
+        imageIsChanged = true
+        
         dismiss(animated: true)
     }
 }
