@@ -27,7 +27,7 @@ struct Place {
         var places = [Place]()
         
         for place in restaurantNames {
-            places.append(Place(name: place, location: "Уфа", type: "Ресторан", image: nil, restaurantImage: place))
+            places.append(Place(name: place, location: "Не Уфа", type: "Ресторан", image: nil, restaurantImage: place))
         }
         
         return places
